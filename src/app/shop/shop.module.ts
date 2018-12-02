@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { productDb } from './../shared/product-db.service';
@@ -14,6 +15,8 @@ import { ResultComponent } from './result/result.component';
   declarations: [ShopPageComponent, SearchComponent, ResultComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ShopRoutingModule,
     InMemoryWebApiModule.forRoot(productDb)
   ]

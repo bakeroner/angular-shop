@@ -1,5 +1,15 @@
-<label for="category">Categories</label>
-<input type="text" name="category">
-<label for="beerName">Beer Name</label>
-<input type="text" name="beerName">
-<button>123</button>
+<form novalidate [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
+	<div>
+		<label for="category">Categories</label><br>
+		<select formControlName="category">
+			<option *ngFor='let item of filters'>{{item}}</option>
+		</select><br>
+		<!-- <input type="text" name="category"><br> -->
+		<label for="beerName">Beer Name</label><br>
+		<input type="text" formControlName="beerName"><br>
+		<input type="submit" value="Search">
+		<!-- <button>Search</button> -->
+	</div>
+</form>	
+<!-- [disabled]="loginForm.invalid" -->
+<!-- [value]='item' -->
