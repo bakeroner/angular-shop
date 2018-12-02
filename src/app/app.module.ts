@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { ShopModule } from './shop/shop.module';
+import { SignModule } from './sign/sign.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,7 +19,9 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShopModule,
+    SignModule
   ],
   providers: [],
   bootstrap: [AppComponent]
