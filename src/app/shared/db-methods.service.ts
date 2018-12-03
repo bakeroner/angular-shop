@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { Observable, of } from 'rxjs';
+
 import {Beer} from './beer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbMethodsService {
-	public getData(): void {
+	public getData(): any {
 		this.http.get('api/products').subscribe(
 			result => {
 				console.log(result.json());
@@ -18,6 +20,17 @@ export class DbMethodsService {
 			}
 		);
 	}
+	/*	public getData(): Observable<Beer[]> {
+		this.http.get('api/products').subscribe(
+			result => {
+				console.log(result.json());
+				return result.json(); 
+			},
+			error => {
+				this.errorHandler(error);
+			}
+		);
+	}*/
 	public fliteredData(filter: string): void {
 		this.http.get('api/products').subscribe(
 			result => {
@@ -35,6 +48,16 @@ export class DbMethodsService {
 			}
 		);
 	}
+	/*	public fliteredData(filter: string): Observable<Beer[]> {
+		this.http.get('api/products').subscribe(
+			result => {
+				return of(result.find(item => item.color == filter));
+			},
+			error => {
+				this.errorHandler(error);
+			}
+		);
+	}*/
 	public searchData(searchText: string): void {
 		this.http.get('api/products').subscribe(
 			result => {

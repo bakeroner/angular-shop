@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { ShopModule } from './shop/shop.module';
 import { SignModule } from './sign/sign.module';
 

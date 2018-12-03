@@ -7,7 +7,7 @@ import { Beer } from './../../shared/beer';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-
+	resultList: Beer[];
   constructor() { }
 
   ngOnInit() {

@@ -10,6 +10,13 @@
 		<input type="submit" value="Search">
 		<!-- <button>Search</button> -->
 	</div>
-</form>	
+</form>
+<div *ngFor='let item of currentResult'>
+	<p>id: {{item.id}}</p>
+	<p>name: {{item.name}}</p>
+	<p>color: {{item.color}}</p>
+	<p>amount: {{item.amount}}</p>
+</div>	
 <!-- [disabled]="loginForm.invalid" -->
 <!-- [value]='item' -->
+<!-- [hidden]='currentResult' -->
