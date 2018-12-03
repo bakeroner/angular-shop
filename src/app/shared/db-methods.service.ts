@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import {Beer} from './beer';
 
@@ -9,74 +11,63 @@ import {Beer} from './beer';
   providedIn: 'root'
 })
 export class DbMethodsService {
-	public getData(): any {
-		this.http.get('api/products').subscribe(
-			result => {
-				console.log(result.json());
-				return result.json(); 
-			},
-			error => {
-				this.errorHandler(error);
-			}
-		);
+	public getData(): Observable<Beer[]> {
+		return this.http.get('api/products')
+			.pipe(map(this.extractData)) 
+			.pipe(catchError((e: any) => this.errorHandler(e)));
 	}
-	/*	public getData(): Observable<Beer[]> {
-		this.http.get('api/products').subscribe(
-			result => {
-				console.log(result.json());
-				return result.json(); 
-			},
-			error => {
-				this.errorHandler(error);
-			}
-		);
-	}*/
-	public fliteredData(filter: string): void {
-		this.http.get('api/products').subscribe(
-			result => {
-				let resultList = result.json();
-				resultList.map((item) => {
-					console.log(item);
-					if (item.color == filter) {
-						console.log('after filtered' + item);
-						return item;
-					}
-				});
-			},
-			error => {
-				this.errorHandler(error);
-			}
-		);
+	public filteredData(filter: string): Observable<Beer[]> {
+		return this.http.get('api/products')
+			.pipe(map(
+				(item: Response) => this.extractDataFilter(item, filter)
+			));	
 	}
-	/*	public fliteredData(filter: string): Observable<Beer[]> {
-		this.http.get('api/products').subscribe(
-			result => {
-				return of(result.find(item => item.color == filter));
-			},
-			error => {
-				this.errorHandler(error);
-			}
-		);
-	}*/
-	public searchData(searchText: string): void {
-		this.http.get('api/products').subscribe(
-			result => {
-				let resultList = result.json();
-				resultList.map((item) => {
-					console.log(item);
-					if (item.name.match(searchText)) {
-						console.log('After filtered' + item);
-						return item;
-					}
-				});
-			},
-			error => {
-				this.errorHandler(error);
-			}
-		);
+	public searchData(searchText: string): Observable<Beer[]> {
+		return this.http.get('api/products')
+			.pipe(map(
+				(item: Response) => this.extractDataSearch(item, searchText)
+			));
 	}
-	private errorHandler(error: any): any {
-	    let errorMessage = error.status + error.json().error;
+	private extractData(response: Response) {
+		let result = response.json();
+		/*let item = new Beer(result.id, result.name, result.color, result.amount, result.price);*/
+		return result;
+	}
+	private extractDataSearch(response: Response, searchText: string) {
+		let result = response.json();
+		let items: any[] = [];
+				for (let i = 0; result.length; i++) {
+
+			if (result[i] && result[i].name.match(searchText)) {
+				items.push(new Beer(result[i].id, result[i].name, result[i].color, result[i].amount, result[i].price));
+			}
+			else {
+				console.log(result[i]);
+			}
+		}
+		console.log(items);
+		return items;
+	}
+	private extractDataFilter(response: Response, filter: string) {
+		let result = response.json();
+		console.log(result);
+		console.log(filter);
+		let items: any[] = [];
+		for (let i = 0; result.length; i++) {
+
+			if (result[i] && result[i].color == filter) {
+
+				items.push(new Beer(result[i].id, result[i].name, result[i].color, result[i].amount, result[i].price));
+			}
+			else {
+				console.log(result[i]);
+			}
+		}
+		console.log(items);
+		return items;
+	}
+	private errorHandler(error: any): any {/*don't work*/
+	    let errorMessage = error.status + error.statusText;
 		console.log(error.statusText);
 		return errorMessage;
     }

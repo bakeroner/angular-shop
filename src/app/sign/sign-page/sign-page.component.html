@@ -3,4 +3,9 @@
   		<input type="password" name="pass">
   		<button type="submit">Submit</button>
   	</form>
+  	<div *ngFor='let item of currentResult'>
+	<p>id: {{item.id}}</p>
+	<p>login: {{item.login}}</p>
+	<p>password: {{item.password}}</p>
+</div>	
 <a routerLink="/registration" routerLinkActive="active">Reg Page</a>

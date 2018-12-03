@@ -3,6 +3,7 @@ export class Beer {
 		public id: number,
 		public name: string,
 		public color: string,
-		public amount: number)
+		public amount: number,
+		public price: number)
 	{}
 }

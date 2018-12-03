@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { productDb } from './../shared/product-db.service';
+/*import { userDb } from './../shared/user-db.service';*/
 
 import {ShopRoutingModule} from './shop-routing.module';
 
