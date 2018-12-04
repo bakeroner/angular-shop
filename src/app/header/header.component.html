@@ -1,5 +1,8 @@
 <div class="background__navigation">
 	<div class="navigation__navigation-container">
+		<a href="/home" class="navigation-container__home">
+			<i class="material-icons home__icon">home</i>
+		</a>
 		<nav class="navigation-container__menu-panel">
 			<ul class="menu-panel">
 				<li class="menu-panel__list-item">
@@ -11,7 +14,6 @@
 				<li class="menu-panel__list-item">
 					<a routerLink="/contact" routerLinkActive="active" class="menu-panel__link">Contact Us</a>
 				</li>
-
 			</ul>
 		</nav>
 		<div class="navigation-container__profile-panel">
@@ -20,7 +22,12 @@
 					<a routerLink="/sign-in" routerLinkActive="active" class="profile-panel__link">Sign In</a>
 				</li>
 				<li class="profile-panel__list-item">
-					<a href="" class="profile-panel__link">Cart {{currentPrice}} $</a>
+					<a href="" class="list-item__link-icon">
+						<i class="material-icons link-icon__cart">shopping_cart</i>
+					</a>
+					<a href="" class="profile-panel__link">
+						{{currentPrice}} $
+					</a>
 				</li>
 			</ul>
 		</div>
