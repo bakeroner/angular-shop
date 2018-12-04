@@ -13,55 +13,44 @@ import {Beer} from './beer';
 export class DbMethodsService {
 	public getData(): Observable<Beer[]> {
 		return this.http.get('api/products')
-			.pipe(map(this.extractData)) 
-			/*.pipe(catchError((e: any) => this.errorHandler(e)))*/;
+			.pipe(map(this.extractData));
 	}
-		public filteredData(filterText: string): Observable<any> {
+	public filteredData(filterText: string): Observable<Beer[]> {
 		return this.http.get('api/products')
-			.pipe(map((item) => {this.extractDataFilter(item, filterText)})
-				/*catchError(error => console.log('ERROR: ', error))*/
+			.pipe(map((item) => this.extractDataFilter(item, filterText))
 			);
-		}
-/*	public searchData(searchText: string): Observable<Beer[]> {
+	}
+	public searchData(searchText: string): Observable<Beer[]> {
 		return this.http.get('api/products')
-			.pipe(map(
-				(item: Response) => this.extractDataSearch(item, searchText)
-			));
-	}*/
+			.pipe(map((item) => this.extractDataSearch(item, searchText))
+			);
+	}
 	private extractData(response: Response) {
 		let result = response.json();
-		console.log(result);
-		/*let item = new Beer(result.id, result.name, result.color, result.amount, result.price);*/
-		return result;
+		let items: Beer[] = [];
+		for (let i = 0; i < result.length; i++) {
+			items.push(new Beer(result[i].id, result[i].name, result[i].color, result[i].amount, result[i].price));
+		}
+		return items;
 	}
 	private extractDataSearch(response: Response, searchText: string) {
 		let result = response.json();
 		let items: Beer[] = [];
-				for (let i = 0; result.length; i++) {
+		for (let i = 0; i < result.length; i++) {
 			if (result[i] && result[i].name.match(searchText)) {
 				items.push(new Beer(result[i].id, result[i].name, result[i].color, result[i].amount, result[i].price));
 			}
-			else {
-				console.log(result[i]);
-			}
 		}
-		console.log(items);
 		return items;
 	}
 	private extractDataFilter(response: Response, filter: string) {
 		let result = response.json();
-		console.log(result);
-		console.log(filter);
 		let items: Beer[] = [];
-		for (let i = 0; result.length; i++) {
-			if (result[i] && result[i].color == filter) {
+		for (let i = 0; i < result.length; i++) {
+			if (result[i].color == filter) {
 				items.push(new Beer(result[i].id, result[i].name, result[i].color, result[i].amount, result[i].price));
-			}
-			else {
-				console.log(result[i]);
-			}
-		}
-		console.log(items);
+			}          
+        }
 		return items;
 	}
 	private errorHandler(error: any): any {/*don't work*/

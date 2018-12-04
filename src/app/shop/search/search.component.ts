@@ -22,10 +22,6 @@ export class SearchComponent implements OnInit {
 		);
 	}*/
 	onSubmit(searchForm): void {
-/*		this.dbMeth.getData().subscribe(
-  			result => {this.currentResult = result},
-  			error => {console.log(error)}
-  		);*/
 /*  		this.dbMeth.filteredData('light').subscribe(
   			result => {this.currentResult = result; console.log(result)},
   			error => {console.log(error)}
@@ -34,15 +30,14 @@ export class SearchComponent implements OnInit {
   constructor(private dbMeth: DbMethodsService, private http: Http) { }
 
   ngOnInit() {
-/*  	this.dbMeth.getData().subscribe(
-  		result => {this.currentResult = result},
-  		error => {console.log(error)}
+/*  this.dbMeth.filteredData('light').subscribe(
+  		  result => {this.currentResult = result},
+  		  error => {console.log(error)}
   	);*/
-/*  	  	this.dbMeth.filteredData('light').subscribe(
-  			result => {this.currentResult = result},
-  			error => {console.log(error)}
-  		);*/
-
+/*      this.dbMeth.searchData('Ite').subscribe(
+        result => {this.currentResult = result},
+        error => {console.log(error)}
+    );*/
   	this.searchForm = new FormGroup({
   		category: new FormControl("", Validators.required),
   		beerName: new FormControl('', [Validators.required])
