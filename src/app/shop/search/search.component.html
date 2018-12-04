@@ -4,23 +4,9 @@
 		<select formControlName="category">
 			<option *ngFor='let item of filters'>{{item}}</option>
 		</select><br>
-		<!-- <input type="text" name="category"><br> -->
 		<label for="beerName">Beer Name</label><br>
 		<input type="text" formControlName="beerName"><br>
 		<input type="submit" value="Search">
-		<!-- <button>Search</button> -->
 	</div>
 </form>
-<!-- 	<div *ngFor='let item of currentResult'>
-		<p>id: {{item.id}}</p>
-		<p>name: {{item.name}}</p>
-		<p>color: {{item.color}}</p>
-		<p>amount: {{item.amount}}</p>
-		<p>price: {{item.price}}</p>
-	</div> -->
 <router-outlet></router-outlet>
-
-
-<!-- [disabled]="loginForm.invalid" -->
-<!-- [value]='item' -->
-<!-- [hidden]='currentResult' -->

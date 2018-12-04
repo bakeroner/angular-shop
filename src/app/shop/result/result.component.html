@@ -2,11 +2,10 @@
 	<div *ngFor='let item of resultList' (click)="getDetail(item.id)" class="result-grid__item-block">
 		<!-- <p>id: {{item.id}}</p> -->
 		<p>name: {{item.name}}</p>
-<!--  		<p>color: {{item.color}}</p>
-		<p>amount: {{item.amount}}</p> -->
 		<p>price: {{item.price}}</p>
 		<div style="display: flex; justify-content: flex-end;">
-			<p>Add to Cart </p><i class="material-icons item-block__cart-add" style="margin-top: auto; margin-bottom: auto;">add</i>
+			<p>Add to Cart </p>
+			<i class="material-icons item-block__cart-add" style="margin-top: auto; margin-bottom: auto;">add</i>
 		</div>
 	</div>
 </div>
