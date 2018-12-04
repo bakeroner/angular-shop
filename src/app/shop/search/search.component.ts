@@ -22,10 +22,6 @@ export class SearchComponent implements OnInit {
 		);
 	}*/
 	onSubmit(searchForm): void {
-		  		this.dbMeth.searchData('Item').subscribe(
-  			result => {this.currentResult = result}/*,
-  			error => {console.log(error)}*/
-  		);
 /*		this.dbMeth.getData().subscribe(
   			result => {this.currentResult = result},
   			error => {console.log(error)}
