@@ -2,11 +2,15 @@
 	position: fixed;
 	width: 100%;
   	top: 0;
-} 
+}
+.stickyPadding {
+	padding-top: 83px;
+}
 .background__navigation {
 	background-color: #fff;
 	border-bottom: 0px solid rgba(0, 0, 0, 0.1);
 	box-shadow: 1px 7px 6px -6px rgba(0,0,0,0.3);
+	z-index: 3;
 }
 .menu-panel,
 .profile-panel {
@@ -72,9 +76,11 @@
 	color: #a2071e;
 	font-size: 45px;
 	grid-area: home;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
 }
 .home__icon:hover {
-	color: #000;
+	border-bottom: 4px solid #a2071e;
 }
 .link-icon__cart {
 	display: inline-block;

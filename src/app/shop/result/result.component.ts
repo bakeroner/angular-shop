@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { DbMethodsService } from './../../shared/db-methods.service';
 import { Beer } from './../../shared/beer';
@@ -9,7 +11,11 @@ import { Beer } from './../../shared/beer';
 })
 export class ResultComponent implements OnInit {
 	resultList: Beer[];
-  constructor(private dbMeth: DbMethodsService) { }
+  getDetail(itemId: number): void {
+    console.log(itemId);
+    this.router.navigate([itemId], {relativeTo: this.route});
+  }
+  constructor(private dbMeth: DbMethodsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 	this.dbMeth.getData().subscribe(

@@ -12,9 +12,10 @@ import {ShopRoutingModule} from './shop-routing.module';
 import { ShopPageComponent } from './shop-page/shop-page.component';
 import { SearchComponent } from './search/search.component';
 import { ResultComponent } from './result/result.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 @NgModule({
-  declarations: [ShopPageComponent, SearchComponent, ResultComponent],
+  declarations: [ShopPageComponent, SearchComponent, ResultComponent, ItemDetailComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -1,0 +1,40 @@
+.detail-window {
+	position: absolute;
+	height: 460px;
+	width: 620px;
+	top: 20vh;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	background-color: transparent;
+	z-index: 2;
+}
+.detail-window__content-block {
+	position: absolute;
+	 box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	background-color: #fff;
+	border-bottom: 0px solid rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	height: 400px;
+	width: 560px;
+	bottom: 0;
+}
+.detail-window__close-button {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.close-button {
+	font-size: 40px;
+}
+.close-button:hover {
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+	color: #a2071e;
+}
+.item-block__cart-add {
+	font-size: 28px;
+}
