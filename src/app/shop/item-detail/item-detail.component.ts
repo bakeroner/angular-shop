@@ -30,7 +30,9 @@ export class ItemDetailComponent implements OnInit {
   constructor(private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  	this.getItem();
+  	if (this.currentId) {
+  		this.getItem();
+  	}
   }
 
 }

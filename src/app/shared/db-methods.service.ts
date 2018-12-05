@@ -15,16 +15,16 @@ export class DbMethodsService {
 		return this.http.get('api/products')
 			.pipe(map(this.extractData));
 	}
-	public filteredData(filterText: string): Observable<Beer[]> {
+	public filteredData(filterText: string, searchText: string): Observable<Beer[]> {
 		return this.http.get('api/products')
-			.pipe(map((item) => this.extractDataFilter(item, filterText))
+			.pipe(map((item) => this.extractDataFiltered(item, filterText, searchText))
 			);
 	}
-	public searchData(searchText: string): Observable<Beer[]> {
+/*	public searchData(searchText: string): Observable<Beer[]> {
 		return this.http.get('api/products')
 			.pipe(map((item) => this.extractDataSearch(item, searchText))
 			);
-	}
+	}*/
 	public getElement(idForSearch: number): Observable<Beer> {
 		return this.http.get('api/products')
 			.pipe(map((item) => this.extractElement(item, idForSearch))
@@ -70,21 +70,24 @@ export class DbMethodsService {
 		}
 		return items;
 	}
-	private extractDataSearch(response: Response, searchText: string) {
+/*	private extractDataSearch(response: Response, searchText: string) {
 		let result = response.json();
 		let items: Beer[] = [];
 		for (let i = 0; i < result.length; i++) {
-			if (result[i] && result[i].name.match(searchText && result[i].amount > 0)) {
+			if (result[i] && result[i].name.match(searchText) && result[i].amount > 0)) {
 				items.push(new Beer(result[i].id, result[i].name, result[i].type, result[i].amount, result[i].price));
 			}
 		}
 		return items;
-	}
-	private extractDataFilter(response: Response, filter: string) {
+	}*/
+	private extractDataFiltered(response: Response, filter: string, searchText: string) {
 		let result = response.json();
 		let items: Beer[] = [];
 		for (let i = 0; i < result.length; i++) {
-			if (result[i].type == filter && result[i].amount > 0) {
+			if (filter == 'All' && result[i].amount > 0 && result[i].name.match(searchText)) {
+				items.push(new Beer(result[i].id, result[i].name, result[i].type, result[i].amount, result[i].price));
+			}
+			else if (result[i].type == filter && result[i].amount > 0 && result[i].name.match(searchText)) {
 				items.push(new Beer(result[i].id, result[i].name, result[i].type, result[i].amount, result[i].price));
 			}          
         }

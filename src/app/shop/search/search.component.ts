@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { debounceTime } from 'rxjs/operators';
 
 import {Beer} from './../../shared/beer';
@@ -14,17 +16,13 @@ import { DbMethodsService } from './../../shared/db-methods.service';
 export class SearchComponent implements OnInit {
 	searchForm: FormGroup;
 	filters: string[] = ['All'];
-/*  listChange(): void {
-    console.log(this.searchForm.category.value);
-  }*/
   onValueChange(value: any): void {
-    console.log(value);
+    this.router.navigate(["/shop", {category: value.category, name: value.beerName}], {relativeTo: this.route});
   }
-	onSubmit(form): void {
-    console.log(form.value);
-    console.log(form.get('category').value);
+	onSubmit(form: FormGroup): void {
+    this.router.navigate(["/shop", {category: form.value.category, name: form.value.beerName}], {relativeTo: this.route});
 	} 
-  constructor(private dbMeth: DbMethodsService, private http: Http) { }
+  constructor(private router: Router, private route: ActivatedRoute, private dbMeth: DbMethodsService, private http: Http) { }
 
   ngOnInit() {
     this.dbMeth.getType().subscribe(
