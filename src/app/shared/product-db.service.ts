@@ -13,6 +13,10 @@ export class productDb implements InMemoryDbService {
 			{id: 1, login: "user", password: 'user', status: 'user'},
 			{id: 2, login: "admin", password: 'admin', status: 'admin'}
 		];
-		return {products: products, users: users};
+		let shoppingList = [
+			{userId: 1, productList: []},
+			{userId: 2, productList: []}
+		];
+		return {products: products, users: users, shoppingList: shoppingList};
 	}
 }

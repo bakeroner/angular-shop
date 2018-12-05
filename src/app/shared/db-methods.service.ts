@@ -20,11 +20,6 @@ export class DbMethodsService {
 			.pipe(map((item) => this.extractDataFiltered(item, filterText, searchText))
 			);
 	}
-/*	public searchData(searchText: string): Observable<Beer[]> {
-		return this.http.get('api/products')
-			.pipe(map((item) => this.extractDataSearch(item, searchText))
-			);
-	}*/
 	public getElement(idForSearch: number): Observable<Beer> {
 		return this.http.get('api/products')
 			.pipe(map((item) => this.extractElement(item, idForSearch))
@@ -70,16 +65,6 @@ export class DbMethodsService {
 		}
 		return items;
 	}
-/*	private extractDataSearch(response: Response, searchText: string) {
-		let result = response.json();
-		let items: Beer[] = [];
-		for (let i = 0; i < result.length; i++) {
-			if (result[i] && result[i].name.match(searchText) && result[i].amount > 0)) {
-				items.push(new Beer(result[i].id, result[i].name, result[i].type, result[i].amount, result[i].price));
-			}
-		}
-		return items;
-	}*/
 	private extractDataFiltered(response: Response, filter: string, searchText: string) {
 		let result = response.json();
 		let items: Beer[] = [];
