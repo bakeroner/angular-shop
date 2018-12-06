@@ -11,15 +11,45 @@ import {Beer} from './beer';
   providedIn: 'root'
 })
 export class CartListMethodsService {
-	public addToCart(userId: number, currentItem: Beer) {
-		return this.http.post(`api/shoppingList/?userId=${userId}/productList[0]`, currentItem);
+	public addProduct(userId: number, currentItem: Beer): any {
+		let amount: number;
+		/*return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});*/
+/*		this.getList(userId).subscribe(
+			res => {
+				console.log(res);
+				amount = this.getItem(res, currentItem.id);
+				console.log(amount);	
+				if (amount) {
+					currentItem.amount = amount+1;
+					console.log(currentItem);
+					return this.http.put(`api/shoppingList/?userId=${userId}`, {userId: userId, product: currentItem});
+				}
+				else {
+					currentItem.amount = 1;
+					console.log(currentItem);
+					return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});
+				}
+			}
+		);*/
 	}
 /*	public removeFromCart(userId: number, productId: number) {
 		this.http.delete(`api/shoppingList/${userId}/productList/${productId}`);
 	}*/
+/*	private getItem(list: any, id: number): any {
+		let amount: number = 0;
+		console.log(list);
+		list.map((item) => {
+			if (item && item.id == id) {
+				amount = item.amount;
+			}
+		})
+			console.log(amount);
+			return amount;
+		
+	}*/
 	public getList(userId: number): Observable<Beer[]> {
-		return this.http.get(`api/shoppingList/?userId=${userId}`)
-			.pipe(map((item) => this.getWholeList(item))
+		return this.http.get(`api/shoppingList`)
+			.pipe(map((item) => this.getWholeList(item, userId))
 			);
 	}
 	public listCheck(): Observable<any> {
@@ -27,12 +57,16 @@ export class CartListMethodsService {
 			.pipe(map((item) => item.json())
 			);
 	}
-	private getWholeList(response: Response) {
+	private getWholeList(response: Response, user: number) {
 		let result = response.json();
 		let list: Beer[] = [];
-		result[0].productList.map((item) => {
-			list.push(item);
+		console.log(result);
+		result.map((item) => {
+			if (item.userId == user) {
+				list.push(item.product);
+			}
 		});
+		console.log(list);
 		return list;
 	}
   constructor(private http: Http) { }

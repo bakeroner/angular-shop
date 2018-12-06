@@ -6,6 +6,9 @@ import { CartListMethodsService } from './../../shared/cart-list-methods.service
 import { DbMethodsService } from './../../shared/db-methods.service';
 import {Beer} from './../../shared/beer';
 
+
+import { Http, Response } from '@angular/http';
+
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
@@ -14,7 +17,16 @@ import {Beer} from './../../shared/beer';
 export class ItemDetailComponent implements OnInit {
 	currentItem: Beer;
 	subscription: any;
+  counter: number = 1;
 	currentId: any = +this.route.snapshot.paramMap.get('id');
+  decrement(): void {
+    if (this.counter > 1) {
+      this.counter--;
+    }
+  }
+  increment(): void {
+    this.counter++;
+  }
 	goBack(): void {
 		this.router.navigate(["../"], {relativeTo: this.route});
 	}
@@ -30,10 +42,13 @@ export class ItemDetailComponent implements OnInit {
 		}
 	}
 	toCard(product: Beer): void {
-    	this.cartListMeth.addToCart(1, product).subscribe(
-      		result => {console.log(result);});
+    	this.cartListMeth.addProduct(1, product)/*.subscribe(
+      		result => {
+      			console.log(result);
+      		}
+      	)*/;
   	}
-  constructor(private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   	if (this.currentId) {

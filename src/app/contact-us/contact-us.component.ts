@@ -7,11 +7,16 @@ import { CartListMethodsService } from './../shared/cart-list-methods.service';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
-	checkFunc():void {
+	checkFunc(): void {
 		this.check.listCheck().subscribe(
 			result => {console.log(result);}
 		);
 	}
+  checkUser(): void {
+    this.check.getList(1).subscribe(
+      result => {console.log(result);}
+    );
+  }
 	/*    this.cartListMeth.getList(1).subscribe(
       result => {this.currentShoppingList = result; console.log(this.currentShoppingList)},
       error => {console.log(error)})

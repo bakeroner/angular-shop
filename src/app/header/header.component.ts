@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { CartListMethodsService } from './../shared/cart-list-methods.service';
 import { CartPriceService } from './../shared/cart-price.service';
@@ -9,10 +9,11 @@ import { CartPriceService } from './../shared/cart-price.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-	currentPrice: string;
+	currentPrice: number = 0;
   currentShoppingList: any[] = [];
   show: boolean = false;
   cartListSubscription: any;
+  priceSubscription: any;
   showList(): void {
     if (!this.show) {
       this.cartListSubscription = this.cartListMeth.getList(1).subscribe(
@@ -33,9 +34,13 @@ export class HeaderComponent implements OnInit {
   constructor(private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
-  	/*this.currentPrice = this.priceService.price;*/
+    this.priceService.priceSum(1).subscribe(
+      result => {
+        this.currentPrice = result;
+      },
+      error => {console.log(error)}
+      )
   }
-
 }
 function headerFunc() {
 	let header = document.getElementById('header');

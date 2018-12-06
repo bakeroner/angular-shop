@@ -17,13 +17,12 @@ export class CartPriceService {
 	private priceSummary(response: Response, user: number) {
 		let result = response.json();
 		let price: number = 0;
-		for (let i = 0; i < result.length; i++) {
-			if (result[i] && result[i].userId == user) {
-				result[i].productList.map((item) => {
-					price += item.amount * item.price;
-				});
+		console.log(result);
+		result.map((item) => {
+			if (item.userId == user) {
+				price += item.product.price * item.product.amount;
 			}
-		}
+		});
 		console.log(price);
 		return price;
 	}

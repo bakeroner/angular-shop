@@ -12,5 +12,10 @@
 			<p>Add to Cart </p>
 			<i class="material-icons item-block__cart-add" (click)="toCard(currentItem)" style="margin-top: auto; margin-bottom: auto;">add</i>
 		</div>
+		<div>
+			<button (click)="decrement()">-</button>
+			<p>{{counter}}</p>
+			<button (click)="increment()">+</button>
+		</div>
 	</div>
 </div>

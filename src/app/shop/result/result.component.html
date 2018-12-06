@@ -1,6 +1,5 @@
 <div class="result-grid">
 	<div *ngFor='let item of resultList' (click)="getDetail(item.id)" class="result-grid__item-block">
-		<!-- <p>id: {{item.id}}</p> -->
 		<img src="./../../assets/beer-image.png" class="item-block__image">
 		<div class="item-block__tag-part">
 			<p class="tag-part__name">{{item.name}}</p>
