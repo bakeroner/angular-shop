@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CartListMethodsService } from './../shared/cart-list-methods.service';
 import { CartPriceService } from './../shared/cart-price.service';
 
 @Component({
@@ -9,11 +10,30 @@ import { CartPriceService } from './../shared/cart-price.service';
 })
 export class HeaderComponent implements OnInit {
 	currentPrice: string;
-
-  constructor(private priceService: CartPriceService) { }
+  currentShoppingList: any[] = [];
+  show: boolean = false;
+  cartListSubscription: any;
+  showList(): void {
+    if (!this.show) {
+      this.cartListSubscription = this.cartListMeth.getList(1).subscribe(
+        result => {
+          this.currentShoppingList = result;
+          if (this.currentShoppingList) {
+            this.show = true;
+            console.log(this.currentShoppingList);
+          } 
+        },
+        error => {console.log(error)})
+    }
+    else {
+      this.show = false;
+      this.cartListSubscription.unsubscribe();
+    }
+  }
+  constructor(private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
-  	this.currentPrice = this.priceService.price;
+  	/*this.currentPrice = this.priceService.price;*/
   }
 
 }

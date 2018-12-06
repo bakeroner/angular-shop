@@ -1,7 +1,7 @@
 <div id="fakeDiv"></div>
 <div class="background__navigation" id="header">
 	<div class="navigation__navigation-container">
-		<a href="/home" class="navigation-container__home">
+		<a routerLink="/home" class="navigation-container__home">
 			<i class="material-icons home__icon">home</i>
 		</a>
 		<nav class="navigation-container__menu-panel">
@@ -24,15 +24,32 @@
 				</li>
 				<li class="profile-panel__list-item">
 					<div class="list-item">
-						<a href="" class="list-item__link-icon">
-							<i class="material-icons link-icon__cart">shopping_cart</i>
-						</a>
+							<i class="material-icons link-icon__cart" (click)="showList()">shopping_cart</i>
 						<a href="" class="profile-panel__link link--price">
 							{{currentPrice}} $
 						</a>
 					</div>
 				</li>
 			</ul>
+		</div>
+			<div class="navigation__cart-list" *ngIf='show'>
+			<ul class="cart-list" >
+				<li *ngFor='let item of currentShoppingList' class="cart-list__item">
+					<div class="item__info-block">
+						<div class="info-block__name">
+							<p class="name__text">{{item.name}}</p>
+						</div>
+						<div class="info-block__item-control">
+							<p class="item-control__amount">x{{item.amount}}</p>
+							<p class="item-control__price">Price: {{item.amount*item.price}} $</p>
+							<i class="material-icons item-control__item-delete">close</i>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="cart-list__bottom">
+				<p class="bottom__confirm">CONFIRM</p>
+			</div>
 		</div>
 	</div>
 </div>

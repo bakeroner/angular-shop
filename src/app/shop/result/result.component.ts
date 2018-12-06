@@ -16,7 +16,7 @@ export class ResultComponent implements OnInit {
     console.log(itemId);
     this.router.navigate([itemId], {relativeTo: this.route});
   }
-    getItem(): void {
+   getItem(): void {
       this.route.params.forEach((params: any) => {
         let currentCategory = params['category'];
         let currentName = params['name'];
@@ -40,6 +40,7 @@ export class ResultComponent implements OnInit {
         }
       })
   }
+
   constructor(private dbMeth: DbMethodsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

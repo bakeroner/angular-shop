@@ -5,8 +5,12 @@
 	<div class="detail-window__content-block">
 		<p>id: {{currentItem.id}}</p>
 		<p>name: {{currentItem.name}}</p>
-  		<p>color: {{currentItem.color}}</p>
+  		<p>type: {{currentItem.type}}</p>
 		<p>amount: {{currentItem.amount}}</p>
 		<p>price: {{currentItem.price}}</p>
+		<div style="display: flex; justify-content: flex-end;">
+			<p>Add to Cart </p>
+			<i class="material-icons item-block__cart-add" (click)="toCard(currentItem)" style="margin-top: auto; margin-bottom: auto;">add</i>
+		</div>
 	</div>
 </div>

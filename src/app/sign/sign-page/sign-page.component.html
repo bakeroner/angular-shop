@@ -1,15 +1,19 @@
-	<div class="auth-block">
+<div class="sign">
+	<div class="sign__registration-block">
+		<h2 class="registration-block__title">Still no Account?</h2>
+		<p class="registration-block__text">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua!
+		</p>
+		<a routerLink="/registration" routerLinkActive="active" class="registration-block__reg-link">Create New Account</a>
+	</div>
+	<div class="sign__auth-block">
 		<form class="auth-block__form">
-			<label for="login">Login</label><br>
+			<label for="login" class="form__label">Login</label><br>
   			<input type="text" name="login" class="form__input"><br>
-  			<label for="password">Password</label><br>
+  			<label for="password" class="form__label">Password</label><br>
   			<input type="password" name="pass" class="form__input"><br>
-  			<button type="submit" class="form__button">Submit</button>
+  			<!-- <button type="submit" class="form__button">Submit</button> -->
   		</form>
   	</div>
-<!--   	<div *ngFor='let item of currentResult'>
-	<p>id: {{item.id}}</p>
-	<p>login: {{item.login}}</p>
-	<p>password: {{item.password}}</p>
-</div>	 -->
-<a routerLink="/registration" routerLinkActive="active">Reg Page</a>
+  </div>

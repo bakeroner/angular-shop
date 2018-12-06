@@ -1,12 +1,14 @@
-<form novalidate [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)" style="margin-left: 5vw;">
-	<div>
-		<label for="category">Categories</label><br>
-		<select formControlName="category">
-			<option *ngFor='let item of filters'>{{item}}</option>
-		</select><br>
-		<label for="beerName">Beer Name</label><br>
-		<input type="text" formControlName="beerName"><br>
-		<input type="submit" value="Search">
+<form novalidate [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)" class="form__search-form">
+	<div class="search-form__category">
+		<label for="category" class="category__label">Category</label><br>
+		<select formControlName="category" class="category__control">
+			<option *ngFor='let item of filters' class="control__item">{{item}}</option>
+		</select>
+	</div>
+	<div class="search-form__search-field">
+		<label for="beerName" class="search-field__label">Search</label><br>
+		<input type="text" formControlName="beerName" class="search-field__control" placeholder="Try Something">
+		<!-- <input type="submit" value="Search" class="search-field__button"> -->
 	</div>
 </form>
 <router-outlet></router-outlet>

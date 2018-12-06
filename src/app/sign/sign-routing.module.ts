@@ -15,13 +15,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class SignRoutingModule { }
-
-/*const routes: Routes = [
-{path: '', redirectTo: '/checklist', pathMatch: 'full'},
-	{path: 'checklist', component: ListHomeComponent, children: [
-		{path: '', component: CheckListComponent, children: [
-			{path: ':id', component: CheckListDetailComponent}, 
-			{path: '', component: CheckListDetailComponent}
-		]}
-	]}
-];*/

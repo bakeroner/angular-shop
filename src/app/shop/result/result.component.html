@@ -1,11 +1,10 @@
 <div class="result-grid">
 	<div *ngFor='let item of resultList' (click)="getDetail(item.id)" class="result-grid__item-block">
 		<!-- <p>id: {{item.id}}</p> -->
-		<p>name: {{item.name}}</p>
-		<p>price: {{item.price}}</p>
-		<div style="display: flex; justify-content: flex-end;">
-			<p>Add to Cart </p>
-			<i class="material-icons item-block__cart-add" style="margin-top: auto; margin-bottom: auto;">add</i>
+		<img src="./../../assets/beer-image.png" class="item-block__image">
+		<div class="item-block__tag-part">
+			<p class="tag-part__name">{{item.name}}</p>
+			<p class="tag-part__price">Price: {{item.price}} $</p>
 		</div>
 	</div>
 </div>

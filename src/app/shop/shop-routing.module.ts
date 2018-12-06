@@ -21,13 +21,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ShopRoutingModule { }
-
-/*const routes: Routes = [
-{path: '', redirectTo: '/shop', pathMatch: 'full'},
-	{path: 'shop', component: ShopPageComponent, children: [
-		{path: '', component: CheckListComponent, children: [
-			{path: ':id', component: CheckListDetailComponent}, 
-			{path: '', component: CheckListDetailComponent}
-		]}
-	]}
-];*/

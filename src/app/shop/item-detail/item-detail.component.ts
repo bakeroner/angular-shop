@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
+import { CartListMethodsService } from './../../shared/cart-list-methods.service';
 import { DbMethodsService } from './../../shared/db-methods.service';
 import {Beer} from './../../shared/beer';
 
@@ -28,7 +29,11 @@ export class ItemDetailComponent implements OnInit {
 			console.log('Smth go wrong');
 		}
 	}
-  constructor(private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
+	toCard(product: Beer): void {
+    	this.cartListMeth.addToCart(1, product).subscribe(
+      		result => {console.log(result);});
+  	}
+  constructor(private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   	if (this.currentId) {
