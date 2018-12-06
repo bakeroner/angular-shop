@@ -29,6 +29,9 @@ export class DbMethodsService {
 		return this.http.get('api/products')
 			.pipe(map(this.getTypeList));
 	}
+	public storageUpdate(currentItem: Beer) {
+		return this.http.put(`api/products/${currentItem.id}`, {id: currentItem.id, name: currentItem.name, type: currentItem.type, amount: currentItem.amount, price: currentItem.price});
+	}
 	private getTypeList(response: Response) {
 		let result = response.json();
 		let typeList: string[] = [];

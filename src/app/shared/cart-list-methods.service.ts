@@ -12,7 +12,7 @@ import {Beer} from './beer';
 })
 export class CartListMethodsService {
 	public addProduct(userId: number, currentItem: Beer): any {
-		let amount: number;
+		return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});
 		/*return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});*/
 /*		this.getList(userId).subscribe(
 			res => {
@@ -32,6 +32,7 @@ export class CartListMethodsService {
 			}
 		);*/
 	}
+
 /*	public removeFromCart(userId: number, productId: number) {
 		this.http.delete(`api/shoppingList/${userId}/productList/${productId}`);
 	}*/
@@ -53,7 +54,7 @@ export class CartListMethodsService {
 			);
 	}
 	public listCheck(): Observable<any> {
-		return this.http.get(`api/shoppingList`)
+		return this.http.get(`api/products`)
 			.pipe(map((item) => item.json())
 			);
 	}

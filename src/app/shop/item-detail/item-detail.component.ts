@@ -17,6 +17,8 @@ import { Http, Response } from '@angular/http';
 export class ItemDetailComponent implements OnInit {
 	currentItem: Beer;
 	subscription: any;
+  addSubscription: any;
+  updateSubscription: any;
   counter: number = 1;
 	currentId: any = +this.route.snapshot.paramMap.get('id');
   decrement(): void {
@@ -25,7 +27,9 @@ export class ItemDetailComponent implements OnInit {
     }
   }
   increment(): void {
+    if (this.currentItem.amount > this.counter) {
     this.counter++;
+     }
   }
 	goBack(): void {
 		this.router.navigate(["../"], {relativeTo: this.route});
@@ -42,11 +46,12 @@ export class ItemDetailComponent implements OnInit {
 		}
 	}
 	toCard(product: Beer): void {
-    	this.cartListMeth.addProduct(1, product)/*.subscribe(
-      		result => {
-      			console.log(result);
-      		}
-      	)*/;
+    let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
+    product.amount = product.amount - this.counter;
+    	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
+        result => {console.log(result)});
+      this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
+        result => {console.log(result)});
   	}
   constructor(private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
@@ -58,6 +63,10 @@ export class ItemDetailComponent implements OnInit {
   ngOnDestroy() {
   	console.log('destroyed');
   	this.subscription.unsubscribe();
+    if (this.addSubscription) {
+      this.addSubscription.unsubscribe();
+      //this.updateSubscription.unsubscribe();
+    }
   }
 
 }
