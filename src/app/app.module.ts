@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ConfirmPageComponent } from './confirm-page/confirm-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ConfirmPageComponent
   ],
   imports: [
     BrowserModule,

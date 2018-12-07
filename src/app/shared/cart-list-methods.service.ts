@@ -14,7 +14,6 @@ export class CartListMethodsService {
 	public addProduct(userId: number, currentItem: Beer): any {
 		return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem.id, name: currentItem.name, type: currentItem.type, amount: currentItem.amount, price: currentItem.price});
 	}
-
 	public removeFromCart(userId: number, productId: number) {
 		return this.http.delete(`api/shoppingList/${productId}`);
 	}

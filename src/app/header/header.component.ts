@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DbMethodsService } from './../shared/db-methods.service';
 import { CartListMethodsService } from './../shared/cart-list-methods.service';
@@ -51,7 +52,7 @@ export class HeaderComponent implements OnInit {
 /*    this.dbMeth.storageUpdate(target).subscribe(
       result => {console.log(result)});*/
   }
-    toFloat(value: number): string {
+  toFloat(value: number): string {
     let stringValue: string = value.toString();
     if (value - Math.floor(value) != 0) {
       let afterDot = stringValue.substr(stringValue.indexOf('.'));
@@ -64,7 +65,18 @@ export class HeaderComponent implements OnInit {
     }
     return stringValue;
   }
-  constructor(private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
+  orderConfirm(): void {
+    if (this.currentPrice) {
+      this.router.navigate(["/confirm"]);
+      this.currentShoppingList.map((item) => {
+        this.cartListMeth.removeFromCart(1, item.id).toPromise()
+          .then (response => console.log(response));
+      });
+      this.currentShoppingList = [];
+      this.currentPrice = 0;
+    }
+  }
+  constructor(private router: Router, private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
   }
