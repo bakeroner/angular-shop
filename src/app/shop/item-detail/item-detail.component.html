@@ -7,7 +7,7 @@
 			<div class="content-block__text">
 				<p class="text__detail-text">{{currentItem.name}}</p>
   				<p class="text__detail-text detail-text--type">Type: {{currentItem.type}}</p>
-				<p class="text__detail-text detail-text--price">Price: {{currentItem.price*counter}} $</p>
+				<p class="text__detail-text detail-text--price">Price: {{toFloat(currentItem.price*counter)}} $</p>
 				<div class="content-block__amount-control">
 					<button (click)="decrement()" class="amount-control__button">-</button>
 					<p class="amount-control__counter">{{counter}}</p>

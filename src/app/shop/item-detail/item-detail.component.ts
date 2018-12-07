@@ -59,6 +59,19 @@ export class ItemDetailComponent implements OnInit {
       this.alertMessage = true;
     }
   }
+  toFloat(value: number): string {
+    let stringValue: string = value.toString();
+    if (value - Math.floor(value) != 0) {
+      let afterDot = stringValue.substr(stringValue.indexOf('.'));
+      if (afterDot.length == 2) {
+        stringValue += '0';
+      }
+    }
+    else {
+      stringValue += '.00';
+    }
+    return stringValue;
+  }
   constructor(private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {

@@ -51,6 +51,19 @@ export class HeaderComponent implements OnInit {
 /*    this.dbMeth.storageUpdate(target).subscribe(
       result => {console.log(result)});*/
   }
+    toFloat(value: number): string {
+    let stringValue: string = value.toString();
+    if (value - Math.floor(value) != 0) {
+      let afterDot = stringValue.substr(stringValue.indexOf('.'));
+      if (afterDot.length == 2) {
+        stringValue += '0';
+      }
+    }
+    else {
+      stringValue += '.00';
+    }
+    return stringValue;
+  }
   constructor(private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {

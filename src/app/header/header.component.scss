@@ -130,18 +130,25 @@
 	display: inline-block;
 }
 .item-control__item-delete {
+	color: #000;
 	display: block; 
 	margin-top: auto; 
 	margin-bottom: auto;
 	padding-right: 1rem;
 	padding-left: 1rem;
 	cursor: pointer;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+.item-control__item-delete:hover {
+	color: #a2071e;
 }
 .item__info-block {
 	display: flex;
 }
 .info-block__name {
 	display: flex;
+	padding-right: 6.5rem;
 }
 .info-block__item-control {
 	display: flex;
@@ -152,11 +159,11 @@
 	padding-left: 1rem;
 	padding-right: 0.3rem;
 }
-.item-control__amount {
+/* .name__amount {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	padding-right: 10rem;
-}
+} */
 .item-control__price {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
