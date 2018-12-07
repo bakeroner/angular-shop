@@ -12,46 +12,12 @@ import {Beer} from './beer';
 })
 export class CartListMethodsService {
 	public addProduct(userId: number, currentItem: Beer): any {
-		/*return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});*/
 		return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem.id, name: currentItem.name, type: currentItem.type, amount: currentItem.amount, price: currentItem.price});
-		/*userId: 1, product: 5, name: "Item 1", amount: 1, price: 2*/
-		/*return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});*/
-/*		this.getList(userId).subscribe(
-			res => {
-				console.log(res);
-				amount = this.getItem(res, currentItem.id);
-				console.log(amount);	
-				if (amount) {
-					currentItem.amount = amount+1;
-					console.log(currentItem);
-					return this.http.put(`api/shoppingList/?userId=${userId}`, {userId: userId, product: currentItem});
-				}
-				else {
-					currentItem.amount = 1;
-					console.log(currentItem);
-					return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});
-				}
-			}
-		);*/
 	}
 
 	public removeFromCart(userId: number, productId: number) {
 		return this.http.delete(`api/shoppingList/${productId}`);
-		/*?userId=${userId};*/
-		//this.http.delete(`api/shoppingList/${userId}/productList/${productId}`);
 	}
-/*	private getItem(list: any, id: number): any {
-		let amount: number = 0;
-		console.log(list);
-		list.map((item) => {
-			if (item && item.id == id) {
-				amount = item.amount;
-			}
-		})
-			console.log(amount);
-			return amount;
-		
-	}*/
 	public getList(userId: number): Observable<Beer[]> {
 		return this.http.get(`api/shoppingList`)
 			.pipe(map((item) => this.getWholeList(item, userId))

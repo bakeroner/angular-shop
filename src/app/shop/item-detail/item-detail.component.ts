@@ -20,6 +20,7 @@ export class ItemDetailComponent implements OnInit {
   addSubscription: any;
   updateSubscription: any;
   counter: number = 1;
+  alertMessage: boolean = false;
 	currentId: any = +this.route.snapshot.paramMap.get('id');
   decrement(): void {
     if (this.counter > 1) {
@@ -53,6 +54,9 @@ export class ItemDetailComponent implements OnInit {
           result => {console.log(result)});
         this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
           result => {console.log(result)});
+    }
+    else {
+      this.alertMessage = true;
     }
   }
   constructor(private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }

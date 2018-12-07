@@ -17,10 +17,6 @@ export class ContactUsComponent implements OnInit {
       result => {console.log(result);}
     );
   }
-	/*    this.cartListMeth.getList(1).subscribe(
-      result => {this.currentShoppingList = result; console.log(this.currentShoppingList)},
-      error => {console.log(error)})
-  }*/
   constructor(private check: CartListMethodsService) { }
 
   ngOnInit() {

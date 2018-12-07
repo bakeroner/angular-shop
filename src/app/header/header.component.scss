@@ -43,7 +43,6 @@
 .profile-panel__list-item {
 	padding-left: 1.5rem;
 }
-.profile-panel__link:hover,
 .menu-panel__link:hover {
 	border-bottom: 4px solid #a2071e;	
 }
@@ -95,6 +94,7 @@
 	border-bottom: 4px solid transparent;
 	-webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
+    cursor: pointer;
 }
 .link-icon__cart:hover {
 	color: #000;
@@ -135,6 +135,7 @@
 	margin-bottom: auto;
 	padding-right: 1rem;
 	padding-left: 1rem;
+	cursor: pointer;
 }
 .item__info-block {
 	display: flex;
@@ -173,6 +174,7 @@
 	color: #fff;
 	margin: 0;
 	padding: 0.5rem 0;
+	cursor: pointer;
 }
 .cart-list__total {
 	display: flex;

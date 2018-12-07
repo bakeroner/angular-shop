@@ -1,5 +1,5 @@
 .detail-window {
-	position: absolute;
+	position: fixed;
 	height: 460px;
 	width: 620px;
 	top: 20vh;
@@ -15,10 +15,51 @@
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	background-color: #fff;
 	border-bottom: 0px solid rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
+	border-radius: 2px 2px 5px 5px;
 	height: 400px;
 	width: 560px;
 	bottom: 0;
+}
+.content-block__text {
+	display: flex;
+	position: absolute;
+	width: auto;
+	flex-direction: column;
+	padding-left: 1rem;
+	text-align: center;
+}
+.text__detail-text {
+	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
+}
+.detail-text--type {
+	margin-top: 0;
+}
+.detail-text--price {
+	margin-top: 4rem;
+}
+.content-block__image {
+	display: flex;
+	position: absolute;
+	top: 0; 
+	right: 0;
+	font-size: 0;
+
+}
+.content__block {
+	/* display: flex; */
+}
+.content-block__amount-control {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.image__detail-image {
+		max-height: 400px;
+	height: 100%;
+	/* max-width: 280px; */
+	width: auto;
+	border-radius: 0 0 5px 0;
 }
 .detail-window__close-button {
 	width: 40px;
@@ -29,6 +70,7 @@
 }
 .close-button {
 	font-size: 40px;
+	cursor: pointer;
 }
 .close-button:hover {
 	-webkit-transition-duration: 0.2s;
@@ -36,5 +78,49 @@
 	color: #a2071e;
 }
 .item-block__cart-add {
+	margin-top: auto; 
+	margin-bottom: auto;
 	font-size: 28px;
+}
+.content-block__add {
+	display: flex; 
+	justify-content: center;
+}
+.amount-control__counter {
+	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+}
+.amount-control__button {
+	outline: none;
+	font-family: 'Open Sans', sans-serif;
+	border: 2px solid #000;
+	background-color: #fff;
+	border-radius: 50%;
+	height: 24px;
+	width: 24px;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+.amount-control__button:hover {
+	border: 2px solid #a2071e;
+}
+.add__button {
+	outline: none;
+	background-color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	margin-top: 1.5rem;
+	border-radius: 3px;
+	border: 1px solid #000;
+	-webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+.add__button:hover {
+	border: 1px solid #a2071e;
+}
+.text__alert-message {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	color: #a2071e;
 }

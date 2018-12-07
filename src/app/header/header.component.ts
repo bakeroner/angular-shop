@@ -21,6 +21,9 @@ export class HeaderComponent implements OnInit {
         result => {
           this.currentShoppingList = result;
           if (this.currentShoppingList) {
+           this.currentShoppingList.map((item) => {
+             this.currentPrice += item.price*item.amount;
+           });
             this.show = true;
             console.log(this.currentShoppingList);
           } 
@@ -29,31 +32,28 @@ export class HeaderComponent implements OnInit {
     }
     else {
       this.show = false;
+      this.currentPrice = 0;
       this.cartListSubscription.unsubscribe();
     }
   }
-  deleteElement(id: number): void {
+  deleteElement(id: number, index: number): void {
     this.cartListMeth.removeFromCart(1, id).subscribe(
       res => console.log(res));
-    let target: Beer;
+    console.log(index);
+    this.currentPrice = this.currentPrice - this.currentShoppingList[index].amount*this.currentShoppingList[index].price;
+    this.currentShoppingList[index] = {};
+    console.log(this.currentShoppingList);
 /*    this.currentShoppingList.map((item) => {
       if (item.product == id) {
         target = new Beer(id, item.name, item.type, item.amount, item.price);
       }
     });*/
-    console.log(target);
 /*    this.dbMeth.storageUpdate(target).subscribe(
       result => {console.log(result)});*/
   }
   constructor(private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
-    this.priceService.priceSum(1).subscribe(
-      result => {
-        this.currentPrice = result;
-      },
-      error => {console.log(error)}
-      )
   }
 }
 function headerFunc() {

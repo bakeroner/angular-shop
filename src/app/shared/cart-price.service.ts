@@ -20,7 +20,7 @@ export class CartPriceService {
 		console.log(result);
 		result.map((item) => {
 			if (item.userId == user) {
-				price += item.product.price * item.product.amount;
+				price += item.price * item.amount;
 			}
 		});
 		console.log(price);
