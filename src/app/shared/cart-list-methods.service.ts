@@ -12,7 +12,9 @@ import {Beer} from './beer';
 })
 export class CartListMethodsService {
 	public addProduct(userId: number, currentItem: Beer): any {
-		return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});
+		/*return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});*/
+		return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem.id, name: currentItem.name, type: currentItem.type, amount: currentItem.amount, price: currentItem.price});
+		/*userId: 1, product: 5, name: "Item 1", amount: 1, price: 2*/
 		/*return this.http.post(`api/shoppingList`, {userId: userId, product: currentItem});*/
 /*		this.getList(userId).subscribe(
 			res => {
@@ -33,9 +35,11 @@ export class CartListMethodsService {
 		);*/
 	}
 
-/*	public removeFromCart(userId: number, productId: number) {
-		this.http.delete(`api/shoppingList/${userId}/productList/${productId}`);
-	}*/
+	public removeFromCart(userId: number, productId: number) {
+		return this.http.delete(`api/shoppingList/${productId}`);
+		/*?userId=${userId};*/
+		//this.http.delete(`api/shoppingList/${userId}/productList/${productId}`);
+	}
 /*	private getItem(list: any, id: number): any {
 		let amount: number = 0;
 		console.log(list);
@@ -54,7 +58,7 @@ export class CartListMethodsService {
 			);
 	}
 	public listCheck(): Observable<any> {
-		return this.http.get(`api/products`)
+		return this.http.get(`api/shoppingList`)
 			.pipe(map((item) => item.json())
 			);
 	}
@@ -64,7 +68,7 @@ export class CartListMethodsService {
 		console.log(result);
 		result.map((item) => {
 			if (item.userId == user) {
-				list.push(item.product);
+				list.push(item);
 			}
 		});
 		console.log(list);

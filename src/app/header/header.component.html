@@ -42,7 +42,7 @@
 						<div class="info-block__item-control">
 							<p class="item-control__amount">x{{item.amount}}</p>
 							<p class="item-control__price">Price: {{item.amount*item.price}} $</p>
-							<i class="material-icons item-control__item-delete">close</i>
+							<i class="material-icons item-control__item-delete" (click)="deleteElement(item.id)">close</i>
 						</div>
 					</div>
 				</li>

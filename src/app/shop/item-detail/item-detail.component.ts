@@ -46,13 +46,15 @@ export class ItemDetailComponent implements OnInit {
 		}
 	}
 	toCard(product: Beer): void {
-    let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
-    product.amount = product.amount - this.counter;
-    	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
-        result => {console.log(result)});
-      this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
-        result => {console.log(result)});
-  	}
+    if (product.amount > 0) {
+      let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
+      product.amount = product.amount - this.counter;
+      	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
+          result => {console.log(result)});
+        this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
+          result => {console.log(result)});
+    }
+  }
   constructor(private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -65,7 +67,7 @@ export class ItemDetailComponent implements OnInit {
   	this.subscription.unsubscribe();
     if (this.addSubscription) {
       this.addSubscription.unsubscribe();
-      //this.updateSubscription.unsubscribe();
+      this.updateSubscription.unsubscribe();
     }
   }
 

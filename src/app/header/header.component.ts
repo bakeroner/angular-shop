@@ -1,8 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 
+import { DbMethodsService } from './../shared/db-methods.service';
 import { CartListMethodsService } from './../shared/cart-list-methods.service';
 import { CartPriceService } from './../shared/cart-price.service';
-
+import {Beer} from './../shared/beer';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -31,7 +32,20 @@ export class HeaderComponent implements OnInit {
       this.cartListSubscription.unsubscribe();
     }
   }
-  constructor(private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
+  deleteElement(id: number): void {
+    this.cartListMeth.removeFromCart(1, id).subscribe(
+      res => console.log(res));
+    let target: Beer;
+/*    this.currentShoppingList.map((item) => {
+      if (item.product == id) {
+        target = new Beer(id, item.name, item.type, item.amount, item.price);
+      }
+    });*/
+    console.log(target);
+/*    this.dbMeth.storageUpdate(target).subscribe(
+      result => {console.log(result)});*/
+  }
+  constructor(private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
     this.priceService.priceSum(1).subscribe(
