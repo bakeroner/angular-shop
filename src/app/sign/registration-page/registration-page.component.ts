@@ -11,26 +11,28 @@ import { LoginService } from './../../shared/login.service';
 })
 export class RegistrationPageComponent implements OnInit {
 	regForm: FormGroup;
+	alert: boolean = false;
 	onRegistration(form: FormGroup) {
-		this.loginService.checkUser(form.value.login).toPromise()
-			.then((item) => {
-				if (item) {
-					this.loginService.addUser(form.value.login, form.value.pass).toPromise()
-						.then((item) => {
-							sessionStorage.setItem('user', `${form.value.login}`);
-							this.router.navigate(["/home"]);
-						});
-				}
-				else {
-					console.log('alreay used');
-				}
-			});
-
+		if (form.valid) {
+			this.loginService.checkUser(form.value.login).toPromise()
+				.then((item) => {
+					if (item) {
+						this.loginService.addUser(form.value.login, form.value.pass).toPromise()
+							.then((item) => {
+								sessionStorage.setItem('user', `${form.value.login}`);
+								this.router.navigate(["/home"]);
+							});
+					}
+					else {
+						this.alert = true;
+					}
+				});
+		}
   	}
   constructor(private router: Router, private loginService: LoginService) { }
   ngOnInit() {
   	this.regForm = new FormGroup({
-  		login: new FormControl('', [Validators.required, Validators.minLength(8)]),
+  		login: new FormControl('', [Validators.required/*, Validators.minLength(8)*/]),
   		pass: new FormControl('', [Validators.required, Validators.minLength(8)]),
   		passConfirm: new FormControl('', [Validators.required, Validators.minLength(8)])
   	});

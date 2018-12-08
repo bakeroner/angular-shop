@@ -8,5 +8,17 @@
   		<input type="password" formControlName="passConfirm" class="reg-form__input"><br>
   		<button type="submit" class="reg-form__button">Confirm</button>
   	</form>
-<a routerLink="/sign-in" routerLinkActive="active" class="registration-block__link">Back</a>
+  	<div *ngIf="regForm.get('login').hasError('required') || regForm.get('pass').hasError('required')" class="alert-window">
+  		<p class="alert-window__message">Login and Password are required.</p>
+  	</div>
+  	<div *ngIf="regForm.get('pass').value != regForm.get('passConfirm').value" class="alert-window">
+  		<p class="alert-window__message">Password and Password Confirm must match.</p>
+  	</div>
+  	<div *ngIf="regForm.get('pass').hasError('minlength')" class="alert-window">
+  		<p class="alert-window__message">Password length must be over 8 symbols.</p>
+  	</div>
+  	  	<div *ngIf="alert" class="alert-window">
+  		<p class="alert-window__message">Current Login is already used.</p>
+  	</div>
+	<a routerLink="/sign-in" routerLinkActive="active" class="registration-block__link">Back</a>
 </div>	

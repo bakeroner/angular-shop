@@ -17,3 +17,9 @@
   		</form>
   	</div>
   </div>
+<div *ngIf="loginForm.get('login').hasError('required') && loginForm.get('login').touched || loginForm.get('pass').hasError('required') && loginForm.get('pass').touched" class="alert-window">
+  	<p class="alert-window__message">Login and Password are required.</p>
+</div>
+<div *ngIf="alert" class="alert-window">
+  	<p class="alert-window__message">No such user or wrong password.</p>
+</div>

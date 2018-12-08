@@ -79,3 +79,13 @@
 .form__button:hover {
 	border: 2px solid #000;
 }
+.alert-window {
+	margin-top: 3rem;
+}
+.alert-window__message {
+	margin: 0;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #a2071e;
+}

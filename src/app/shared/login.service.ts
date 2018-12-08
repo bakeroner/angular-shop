@@ -30,7 +30,7 @@ export class LoginService {
 	}
 	private checkIt(response: Response, pass: string) {
 		let result = response.json();
-		if (result) {
+		if (result[0]) {
 			if (result[0].password == pass) {	
 				return true;
 			}
