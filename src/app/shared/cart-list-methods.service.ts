@@ -23,7 +23,7 @@ export class CartListMethodsService {
 			);
 	}
 	public listCheck(): Observable<any> {
-		return this.http.get(`api/shoppingList`)
+		return this.http.get(`api/products`)
 			.pipe(map((item) => item.json())
 			);
 	}

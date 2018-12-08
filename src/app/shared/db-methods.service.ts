@@ -32,11 +32,6 @@ export class DbMethodsService {
 	public storageUpdate(currentItem: Beer) {
 		return this.http.put(`api/products/${currentItem.id}`, {id: currentItem.id, name: currentItem.name, type: currentItem.type, amount: currentItem.amount, price: currentItem.price});
 	}
-/*	public getAmount(itemId: number) {
-		return this.http.get(`api/products/${itemId}`)
-			.pipe(map((item) => this.getWholeList(item, userId))
-			);
-	}*/
 	private getTypeList(response: Response) {
 		let result = response.json();
 		let typeList: string[] = [];

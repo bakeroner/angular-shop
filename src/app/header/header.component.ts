@@ -38,24 +38,19 @@ export class HeaderComponent implements OnInit {
       this.cartListSubscription.unsubscribe();
     }
   }
-  deleteElement(id: number, index: number): void {
-    console.log('id: '+ id);
+  deleteElement(id: number, productId: number, index: number): void {
     this.cartListMeth.removeFromCart(1, id).toPromise()
       .then(res => console.log(res));
     this.currentPrice = this.currentPrice - this.currentShoppingList[index].amount*this.currentShoppingList[index].price; 
-    
-    this.dbMeth.getElement(id).toPromise()//fix it
+    let itemAmount = this.currentShoppingList[index].amount;
+    this.dbMeth.getElement(productId).toPromise()
     .then((item) => {
-      console.log(item);
       if (item.amount) {
-        item.amount = +item.amount + +this.currentShoppingList[index].amount;
-        console.log(item.amount);
+        item.amount = item.amount + itemAmount;
       }
       else {
-        item.amount = +this.currentShoppingList[index].amount;
-        console.log(item.amount);
+        item.amount = itemAmount;
       }
-      console.log(item);
       this.dbMeth.storageUpdate(item).toPromise()
         .then(res => console.log(res));
     })
