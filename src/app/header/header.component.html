@@ -38,13 +38,13 @@
 							<!-- <p class="name__amount"></p> -->
 						</div>
 						<div class="info-block__item-control">					
-							<p class="item-control__price">Price: {{toFloat(item.amount*item.price)}} $</p>
+							<p class="item-control__price">Price: {{floatMeth.toFloat(item.amount*item.price)}} $</p>
 							<i class="material-icons item-control__item-delete" (click)="deleteElement(item.id, i)">close</i>
 						</div>
 					</div>
 				</li>
 			</ul>
-			 <p class="cart-list__total">Total: {{toFloat(currentPrice)}} $</p>
+			 <p class="cart-list__total">Total: {{floatMeth.toFloat(currentPrice)}} $</p>
 			<div class="cart-list__bottom">
 				<p class="bottom__confirm" (click)="orderConfirm()">CONFIRM</p>
 			</div>

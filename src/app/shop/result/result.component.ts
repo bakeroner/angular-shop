@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { DbMethodsService } from './../../shared/db-methods.service';
+import { NumToFloatService } from './../../shared/num-to-float.service';
 import { Beer } from './../../shared/beer';
 @Component({
   selector: 'app-result',
@@ -40,20 +41,7 @@ export class ResultComponent implements OnInit {
         }
       })
   }
-  toFloat(value: number): string {
-    let stringValue: string = value.toString();
-    if (value - Math.floor(value) != 0) {
-      let afterDot = stringValue.substr(stringValue.indexOf('.'));
-      if (afterDot.length == 2) {
-        stringValue += '0';
-      }
-    }
-    else {
-      stringValue += '.00';
-    }
-    return stringValue;
-  }
-  constructor(private dbMeth: DbMethodsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private floatMeth: NumToFloatService, private dbMeth: DbMethodsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.getItem();

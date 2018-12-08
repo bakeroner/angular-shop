@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DbMethodsService } from './../shared/db-methods.service';
 import { CartListMethodsService } from './../shared/cart-list-methods.service';
 import { CartPriceService } from './../shared/cart-price.service';
+import { NumToFloatService } from './../shared/num-to-float.service';
 import {Beer} from './../shared/beer';
 @Component({
   selector: 'app-header',
@@ -38,32 +39,27 @@ export class HeaderComponent implements OnInit {
     }
   }
   deleteElement(id: number, index: number): void {
-    this.cartListMeth.removeFromCart(1, id).subscribe(
-      res => console.log(res));
-    console.log(index);
-    this.currentPrice = this.currentPrice - this.currentShoppingList[index].amount*this.currentShoppingList[index].price;
+    console.log('id: '+ id);
+    this.cartListMeth.removeFromCart(1, id).toPromise()
+      .then(res => console.log(res));
+    this.currentPrice = this.currentPrice - this.currentShoppingList[index].amount*this.currentShoppingList[index].price; 
+    
+    this.dbMeth.getElement(id).toPromise()//fix it
+    .then((item) => {
+      console.log(item);
+      if (item.amount) {
+        item.amount = +item.amount + +this.currentShoppingList[index].amount;
+        console.log(item.amount);
+      }
+      else {
+        item.amount = +this.currentShoppingList[index].amount;
+        console.log(item.amount);
+      }
+      console.log(item);
+      this.dbMeth.storageUpdate(item).toPromise()
+        .then(res => console.log(res));
+    })
     this.currentShoppingList[index] = {};
-    console.log(this.currentShoppingList);
-/*    this.currentShoppingList.map((item) => {
-      if (item.product == id) {
-        target = new Beer(id, item.name, item.type, item.amount, item.price);
-      }
-    });*/
-/*    this.dbMeth.storageUpdate(target).subscribe(
-      result => {console.log(result)});*/
-  }
-  toFloat(value: number): string {
-    let stringValue: string = value.toString();
-    if (value - Math.floor(value) != 0) {
-      let afterDot = stringValue.substr(stringValue.indexOf('.'));
-      if (afterDot.length == 2) {
-        stringValue += '0';
-      }
-    }
-    else {
-      stringValue += '.00';
-    }
-    return stringValue;
   }
   orderConfirm(): void {
     if (this.currentPrice) {
@@ -76,7 +72,7 @@ export class HeaderComponent implements OnInit {
       this.currentPrice = 0;
     }
   }
-  constructor(private router: Router, private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
+  constructor(private floatMeth: NumToFloatService, private router: Router, private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
   }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { CartListMethodsService } from './../../shared/cart-list-methods.service';
 import { DbMethodsService } from './../../shared/db-methods.service';
+import { NumToFloatService } from './../../shared/num-to-float.service';
 import {Beer} from './../../shared/beer';
 
 
@@ -59,20 +60,7 @@ export class ItemDetailComponent implements OnInit {
       this.alertMessage = true;
     }
   }
-  toFloat(value: number): string {
-    let stringValue: string = value.toString();
-    if (value - Math.floor(value) != 0) {
-      let afterDot = stringValue.substr(stringValue.indexOf('.'));
-      if (afterDot.length == 2) {
-        stringValue += '0';
-      }
-    }
-    else {
-      stringValue += '.00';
-    }
-    return stringValue;
-  }
-  constructor(private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private floatMeth: NumToFloatService, private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   	if (this.currentId) {
