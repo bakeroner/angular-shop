@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   show: boolean = false;
   cartListSubscription: any;
   priceSubscription: any;
+  isSign: string = '';
   showList(): void {
     if (!this.show) {
       this.cartListSubscription = this.cartListMeth.getList(1).subscribe(
@@ -67,9 +68,14 @@ export class HeaderComponent implements OnInit {
       this.currentPrice = 0;
     }
   }
+  signOut(): void {
+    sessionStorage.clear();
+    this.isSign = '';
+  }
   constructor(private floatMeth: NumToFloatService, private router: Router, private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
 
   ngOnInit() {
+    this.isSign = sessionStorage.getItem('user');
   }
 }
 function headerFunc() {

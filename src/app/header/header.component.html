@@ -20,7 +20,8 @@
 		<div class="navigation-container__profile-panel">
 			<ul class="profile-panel">
 				<li class="profile-panel__list-item">
-					<a routerLink="/sign-in" routerLinkActive="active" class="profile-panel__link">Sign In</a>
+					<a routerLink="/sign-in" *ngIf='!isSign' routerLinkActive="active" class="profile-panel__link">Sign In</a>
+					<a *ngIf='isSign' class="profile-panel__link" (click)="signOut()">Sign Out</a>
 				</li>
 				<li class="profile-panel__list-item">
 					<div class="list-item">

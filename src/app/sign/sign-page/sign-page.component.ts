@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+
+import { LoginService } from './../../shared/login.service';
 
 @Component({
   selector: 'app-sign-page',
@@ -8,18 +11,24 @@ import { Http } from '@angular/http';
   styleUrls: ['./sign-page.component.scss']
 })
 export class SignPageComponent implements OnInit {
-	currentResult: any[];
-	gettingUsers(): void {
-			this.http.get('api/users').subscribe(
-			result => {this.currentResult = result.json(); console.log(this.currentResult)},
-			error => console.log(error.statusText)
-		);
+	loginForm: FormGroup;
+	onLogin(form: FormGroup): void {
+		this.loginService.checkLogin(form.value.login, form.value.pass).toPromise()
+			.then((item) => {
+				if (item) {
+					//this.login = form.value.login;
+					sessionStorage.setItem('user', `${form.value.login}`);
+					this.router.navigate(["/home"]);
+				}
+			});
 	}
-  constructor(private http: Http) { }
+  constructor(private router: Router, private http: Http, private loginService: LoginService) { }
 
   ngOnInit() {
-  	this.gettingUsers();
-
+  	this.loginForm = new FormGroup({
+  		login: new FormControl('', [Validators.required, Validators.minLength(8)]),
+  		pass: new FormControl('', [Validators.required, Validators.minLength(8)])
+  	});
   }
 
 }

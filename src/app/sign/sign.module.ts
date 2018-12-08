@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SignRoutingModule } from './sign-routing.module';
 
@@ -10,6 +11,8 @@ import { RegistrationPageComponent } from './registration-page/registration-page
   declarations: [SignPageComponent, RegistrationPageComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,    
     SignRoutingModule
   ]
 })

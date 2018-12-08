@@ -1,11 +1,11 @@
 <div class="registration-block">
-	<form class="registration-block__reg-form">
+	<form novalidate [formGroup]="regForm" (ngSubmit)="onRegistration(regForm)" class="registration-block__reg-form">
 		<label for="login" class="reg-form__label">Login</label><br>
-  		<input type="text" name="login" class="reg-form__input"><br>
+  		<input type="text" formControlName="login" class="reg-form__input"><br>
   		<label for="pass" class="reg-form__label">Password</label><br>
-  		<input type="password" name="pass" class="reg-form__input"><br>
+  		<input type="password" formControlName="pass" class="reg-form__input"><br>
   		<label for="passConfirm" class="reg-form__label">Password Confirm</label><br>
-  		<input type="password" name="passConfirm" class="reg-form__input"><br>
+  		<input type="password" formControlName="passConfirm" class="reg-form__input"><br>
   		<!-- <button type="submit" class="reg-form__button">Confirm</button> -->
   	</form>
 <a routerLink="/sign-in" routerLinkActive="active" class="registration-block__link">Back</a>
