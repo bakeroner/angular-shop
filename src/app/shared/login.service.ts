@@ -14,6 +14,20 @@ export class LoginService {
 			.pipe(map((item) => this.checkIt(item, pass))
 			);
 	}
+	public addUser(login: string, pass: string)/*: Observable<number>*/ {
+		return this.http.post(`api/users`, {login: login, password: pass});
+	}
+	public checkUser(login: string)/*: Observable<number>*/ {
+		return this.http.get(`api/users/?login=${login}`)
+			.pipe(map((item) => {
+				if (item.json().length) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}));
+	}
 	private checkIt(response: Response, pass: string) {
 		let result = response.json();
 		if (result) {
@@ -28,5 +42,6 @@ export class LoginService {
 			return false;
 		}
 	}
+
   constructor(private http: Http) { }
 }
