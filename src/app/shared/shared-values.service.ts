@@ -13,12 +13,5 @@ export class SharedValuesService {
 	emitUsername(value) {
 		this.usernameObservable.next(value);
 	}
-/*	public totalObservable = new Subject<number>();
-	emitPrice(value) {
-			this.totalObservable.next(value);
-	}
-	emitPriceSub(value) {
-		this.totalObservable.next(value);
-	}*/
   constructor(private http: Http) { }
 }

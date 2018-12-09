@@ -53,14 +53,21 @@ export class ItemDetailComponent implements OnInit {
       if (sessionStorage.getItem('user')) {
         let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
         product.amount = product.amount - this.counter;
-/*        	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
-            result => {
-              console.log(result);       
-            });*/
             let userId = sessionStorage.getItem('id');
-            this.addSubscription = this.cartListMeth.addProduct(+userId, productToAdd).toPromise()
-              .then(result => {
-                console.log(result);       
+            this.cartListMeth.getItem(+userId, product.id).toPromise()
+              .then(item => {
+                if (item.amount) {
+                  productToAdd.amount = item.amount + this.counter;
+                  this.cartListMeth.updateItem(+userId, item.id, productToAdd).toPromise().then(res => {
+                    console.log(res);
+                  });
+                }
+                else {
+                  this.addSubscription = this.cartListMeth.addProduct(+userId, productToAdd).toPromise()
+                    .then(result => {
+                      console.log(result);       
+              });                  
+                }
               });
           this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
             result => {console.log(result)});
