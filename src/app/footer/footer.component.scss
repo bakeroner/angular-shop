@@ -1,3 +1,6 @@
+$add-color: #a2071e;
+$font-title: 'Montserrat', sans-serif;
+$font-regular: 'Open Sans', sans-serif;
 .background__footer {
 	position: absolute;
     left: 0;
@@ -39,19 +42,19 @@
 	text-decoration: none;
 	color: #000;
 	font-size: 20px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	border-bottom: 4px solid transparent;
 	-webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
 }
 .item__link:hover,
 .text-part__git:hover {
-	border-bottom: 4px solid #a2071e;	
+	border-bottom: 4px solid $add-color;	
 }
 .text-part__developer {
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	font-size: 20px;
 }
 .developer__part {
-	border-bottom: 4px solid #a2071e;	
+	border-bottom: 4px solid $add-color;	
 }

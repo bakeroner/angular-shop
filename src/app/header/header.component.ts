@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { DbMethodsService } from './../shared/db-methods.service';
 import { CartListMethodsService } from './../shared/cart-list-methods.service';
-import { CartPriceService } from './../shared/cart-price.service';
+/*import { CartPriceService } from './../shared/cart-price.service';*/
 import { SharedValuesService } from './../shared/shared-values.service';
 import { NumToFloatService } from './../shared/num-to-float.service';
 import {Beer} from './../shared/beer';
@@ -83,14 +83,11 @@ export class HeaderComponent implements OnInit {
     private router: Router, 
     private dbMeth: DbMethodsService, 
     private cartListMeth: CartListMethodsService, 
-    private priceService: CartPriceService,
+    /*private priceService: CartPriceService,*/
     private shared: SharedValuesService) { }
 
   ngOnInit() {
     this.isSign = sessionStorage.getItem('user');
-/*    this.shared.totalObservable.subscribe(value => {
-      console.log(value);
-    })*/
     this.shared.usernameObservable.subscribe(value => {
       this.isSign = value;
       console.log(value);

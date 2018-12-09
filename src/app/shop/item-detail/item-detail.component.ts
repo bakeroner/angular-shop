@@ -66,11 +66,11 @@ export class ItemDetailComponent implements OnInit {
                   this.addSubscription = this.cartListMeth.addProduct(+userId, productToAdd).toPromise()
                     .then(result => {
                       console.log(result);       
-              });                  
+                    });                  
                 }
               });
-          this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
-            result => {console.log(result)});
+            this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
+              result => {console.log(result)});
       }
       else {
         this.notSign = true; 

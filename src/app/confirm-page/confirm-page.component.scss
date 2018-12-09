@@ -1,8 +1,11 @@
+$add-color: #a2071e;
+$font-title: 'Montserrat', sans-serif;
+$font-regular: 'Open Sans', sans-serif;
 .text-part__header {
-	color: #a2071e;
+	color: $add-color;
 	font-size: 30px;
 	text-align: center;
-	font-family: 'Montserrat', sans-serif;
+	font-family: $font-title;
 }
 .text-part__description {
 	text-align: center;
@@ -10,5 +13,5 @@
 	margin-right: auto;
 	width: 60%;
 	line-height: 1.5;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 }

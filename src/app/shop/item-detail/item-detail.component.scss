@@ -1,3 +1,6 @@
+$add-color: #a2071e;
+$font-title: 'Montserrat', sans-serif;
+$font-regular: 'Open Sans', sans-serif;
 .detail-window {
 	position: fixed;
 	height: 460px;
@@ -30,7 +33,7 @@
 }
 .text__detail-text {
 	font-size: 20px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 }
 .detail-text--type {
 	margin-top: 0;
@@ -75,7 +78,7 @@
 .close-button:hover {
 	-webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
-	color: #a2071e;
+	color: $add-color;
 }
 .item-block__cart-add {
 	margin-top: auto; 
@@ -88,12 +91,12 @@
 }
 .amount-control__counter {
 	font-size: 20px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	margin: 0;
 }
 .amount-control__button {
 	outline: none;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	border: 2px solid #000;
 	background-color: #fff;
 	border-radius: 50%;
@@ -103,12 +106,12 @@
     transition-duration: 0.2s;
 }
 .amount-control__button:hover {
-	border: 2px solid #a2071e;
+	border: 2px solid $add-color;
 }
 .add__button {
 	outline: none;
 	background-color: #fff;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	font-size: 20px;
 	margin-top: 1.5rem;
 	border-radius: 3px;
@@ -117,10 +120,10 @@
     transition-duration: 0.2s;
 }
 .add__button:hover {
-	border: 1px solid #a2071e;
+	border: 1px solid $add-color;
 }
 .text__alert-message {
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	font-size: 20px;
-	color: #a2071e;
+	color: $add-color;
 }

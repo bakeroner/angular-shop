@@ -1,3 +1,6 @@
+$add-color: #a2071e;
+$font-title: 'Montserrat', sans-serif;
+$font-regular: 'Open Sans', sans-serif;
 .result-grid {
 	margin-left: 5vw;
 	margin-right: 5vw;
@@ -15,10 +18,10 @@
     border-radius: 0 0 4px 4px;
 }
 .result-grid__item-block:hover {
-	border: 2px solid #a2071e;
+	border: 2px solid $add-color;
 }
 .item-block__cart-add {
-	color: #a2071e;
+	color: $add-color;
 }
 .no-result {
 	padding-top: 2rem;
@@ -26,13 +29,13 @@
 	margin-right: auto;
 }
 .no-result__header {
-	font-family: 'Montserrat', sans-serif;
+	font-family: $font-title;
 	font-size: 30px;
 	text-align: center;
-	color: #a2071e;
+	color: $add-color;
 }
 .no-result__text {
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 	text-align: center;
 	font-size: 20px;
 }
@@ -53,5 +56,5 @@
 }
 .tag-part__name,
 .tag-part__price {
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-regular;
 }
