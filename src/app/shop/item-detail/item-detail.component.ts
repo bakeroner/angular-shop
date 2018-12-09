@@ -53,8 +53,15 @@ export class ItemDetailComponent implements OnInit {
       if (sessionStorage.getItem('user')) {
         let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
         product.amount = product.amount - this.counter;
-        	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
-            result => {console.log(result)});
+/*        	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
+            result => {
+              console.log(result);       
+            });*/
+            let userId = sessionStorage.getItem('id');
+            this.addSubscription = this.cartListMeth.addProduct(+userId, productToAdd).toPromise()
+              .then(result => {
+                console.log(result);       
+              });
           this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
             result => {console.log(result)});
       }
@@ -66,8 +73,14 @@ export class ItemDetailComponent implements OnInit {
       this.alertMessage = true;
     }
   }
-  constructor(private floatMeth: NumToFloatService, private http: Http, private cartListMeth: CartListMethodsService, private dbMeth: DbMethodsService, private router: Router, private route: ActivatedRoute) { }
-
+  constructor(
+    private floatMeth: NumToFloatService, 
+    private http: Http, 
+    private cartListMeth: CartListMethodsService, 
+    private dbMeth: DbMethodsService, 
+    private router: Router, 
+    private route: ActivatedRoute
+    ) { }
   ngOnInit() {
   	if (this.currentId) {
   		this.getItem();
@@ -76,8 +89,8 @@ export class ItemDetailComponent implements OnInit {
   ngOnDestroy() {
   	console.log('destroyed');
   	this.subscription.unsubscribe();
-    if (this.addSubscription) {
-      this.addSubscription.unsubscribe();
+    if (this.updateSubscription) {
+      //this.addSubscription.unsubscribe();
       this.updateSubscription.unsubscribe();
     }
   }

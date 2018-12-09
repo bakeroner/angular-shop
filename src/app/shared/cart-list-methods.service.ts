@@ -22,6 +22,9 @@ export class CartListMethodsService {
 			.pipe(map((item) => this.getWholeList(item, userId))
 			);
 	}
+	public updateItem(userId: number, item: Beer) {
+		return this.http.put(`api/shoppingList/${item.id}`, {userId: userId, product: item.id, name: item.name, type: item.type, amount: item.amount, price: item.price});
+	}
 	public listCheck(): Observable<any> {
 		return this.http.get(`api/products`)
 			.pipe(map((item) => item.json())

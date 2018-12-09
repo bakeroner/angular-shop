@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit {
   isSign: any;
   showList(): void {
     if (!this.show) {
-      this.cartListSubscription = this.cartListMeth.getList(1).subscribe(
+      let userId = sessionStorage.getItem('id');
+      this.cartListSubscription = this.cartListMeth.getList(+userId).subscribe(
         result => {
           this.currentShoppingList = result;
           if (this.currentShoppingList) {
@@ -44,7 +45,8 @@ export class HeaderComponent implements OnInit {
     }
   }
   deleteElement(id: number, productId: number, index: number): void {
-    this.cartListMeth.removeFromCart(1, id).toPromise()
+    let userId = sessionStorage.getItem('id');
+    this.cartListMeth.removeFromCart(+userId, id).toPromise()
       .then(res => console.log(res));
     this.currentPrice = this.currentPrice - this.currentShoppingList[index].amount*this.currentShoppingList[index].price; 
     let itemAmount = this.currentShoppingList[index].amount;
@@ -65,7 +67,8 @@ export class HeaderComponent implements OnInit {
     if (this.currentPrice) {
       this.router.navigate(["/confirm"]);
       this.currentShoppingList.map((item) => {
-        this.cartListMeth.removeFromCart(1, item.id).toPromise()
+        let userId = sessionStorage.getItem('id');
+        this.cartListMeth.removeFromCart(+userId, item.id).toPromise()
           .then (response => console.log(response));
       });
       this.currentShoppingList = [];
@@ -85,8 +88,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isSign = sessionStorage.getItem('user');
+/*    this.shared.totalObservable.subscribe(value => {
+      console.log(value);
+    })*/
     this.shared.usernameObservable.subscribe(value => {
       this.isSign = value;
+      console.log(value);
     })
   }
 

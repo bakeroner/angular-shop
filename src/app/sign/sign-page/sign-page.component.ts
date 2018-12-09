@@ -23,6 +23,13 @@ export class SignPageComponent implements OnInit {
 				.then((item) => {
 					if (item) {
 						sessionStorage.setItem('user', `${form.value.login}`);
+						//sdfsdf
+						this.loginService.getId(`${form.value.login}`).toPromise()
+							.then((item) => {
+								console.log(item);
+								sessionStorage.setItem('id', `${item[0].id}`);
+							});
+						//sessionStorage.setItem('id', `${item.id}`);
 						this.router.navigate(["/"]);
 						this.emitUsername(`${form.value.login}`);
 					}

@@ -28,6 +28,12 @@ export class LoginService {
 				}
 			}));
 	}
+	//dfdfdf
+	public getId(login: string) {
+		return this.http.get(`api/users/?login=${login}`)
+			.pipe(map(item => item.json()));
+	}
+	//dfdfdf
 	private checkIt(response: Response, pass: string) {
 		let result = response.json();
 		if (result[0]) {
