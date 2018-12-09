@@ -29,7 +29,6 @@ export class SignPageComponent implements OnInit {
 								console.log(item);
 								sessionStorage.setItem('id', `${item[0].id}`);
 							});
-						//sessionStorage.setItem('id', `${item.id}`);
 						this.router.navigate(["/"]);
 						this.emitUsername(`${form.value.login}`);
 					}
