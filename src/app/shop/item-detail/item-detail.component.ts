@@ -22,6 +22,7 @@ export class ItemDetailComponent implements OnInit {
   updateSubscription: any;
   counter: number = 1;
   alertMessage: boolean = false;
+  notSign: boolean = false;
 	currentId: any = +this.route.snapshot.paramMap.get('id');
   decrement(): void {
     if (this.counter > 1) {
@@ -49,12 +50,17 @@ export class ItemDetailComponent implements OnInit {
 	}
 	toCard(product: Beer): void {
     if (product.amount > 0) {
-      let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
-      product.amount = product.amount - this.counter;
-      	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
-          result => {console.log(result)});
-        this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
-          result => {console.log(result)});
+      if (sessionStorage.getItem('user')) {
+        let productToAdd: Beer = new Beer(product.id, product.name, product.type, this.counter, product.price);
+        product.amount = product.amount - this.counter;
+        	this.addSubscription = this.cartListMeth.addProduct(1, productToAdd).subscribe(
+            result => {console.log(result)});
+          this.updateSubscription = this.dbMeth.storageUpdate(product).subscribe(
+            result => {console.log(result)});
+      }
+      else {
+        this.notSign = true; 
+      }
     }
     else {
       this.alertMessage = true;

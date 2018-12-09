@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from './../../shared/login.service';
 
+import {SharedValuesService} from './../../shared/shared-values.service';
 @Component({
   selector: 'app-sign-page',
   templateUrl: './sign-page.component.html',
@@ -13,13 +14,17 @@ import { LoginService } from './../../shared/login.service';
 export class SignPageComponent implements OnInit {
 	loginForm: FormGroup;
 	alert: boolean = false;
+	emitUsername(value) {
+		this.checkmeth.emitUsername(value);
+	}
 	onLogin(form: FormGroup): void {
 		if (form.valid) {
 			this.loginService.checkLogin(form.value.login, form.value.pass).toPromise()
 				.then((item) => {
 					if (item) {
 						sessionStorage.setItem('user', `${form.value.login}`);
-						this.router.navigate(["/home"]);
+						this.router.navigate(["/"]);
+						this.emitUsername(`${form.value.login}`);
 					}
 					else {
 						this.alert = true;
@@ -27,7 +32,7 @@ export class SignPageComponent implements OnInit {
 				});
 		}
 	}
-  constructor(private router: Router, private http: Http, private loginService: LoginService) { }
+  constructor(private checkmeth: SharedValuesService, private router: Router, private http: Http, private loginService: LoginService) { }
 
   ngOnInit() {
   	this.loginForm = new FormGroup({

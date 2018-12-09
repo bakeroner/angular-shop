@@ -4,8 +4,12 @@ import { Router } from '@angular/router';
 import { DbMethodsService } from './../shared/db-methods.service';
 import { CartListMethodsService } from './../shared/cart-list-methods.service';
 import { CartPriceService } from './../shared/cart-price.service';
+import { SharedValuesService } from './../shared/shared-values.service';
 import { NumToFloatService } from './../shared/num-to-float.service';
 import {Beer} from './../shared/beer';
+
+import { Observable, of } from 'rxjs';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,7 +21,7 @@ export class HeaderComponent implements OnInit {
   show: boolean = false;
   cartListSubscription: any;
   priceSubscription: any;
-  isSign: string = '';
+  isSign: any;
   showList(): void {
     if (!this.show) {
       this.cartListSubscription = this.cartListMeth.getList(1).subscribe(
@@ -72,11 +76,20 @@ export class HeaderComponent implements OnInit {
     sessionStorage.clear();
     this.isSign = '';
   }
-  constructor(private floatMeth: NumToFloatService, private router: Router, private dbMeth: DbMethodsService, private cartListMeth: CartListMethodsService, private priceService: CartPriceService) { }
+  constructor(private floatMeth: NumToFloatService, 
+    private router: Router, 
+    private dbMeth: DbMethodsService, 
+    private cartListMeth: CartListMethodsService, 
+    private priceService: CartPriceService,
+    private shared: SharedValuesService) { }
 
   ngOnInit() {
     this.isSign = sessionStorage.getItem('user');
+    this.shared.usernameObservable.subscribe(value => {
+      this.isSign = value;
+    })
   }
+
 }
 function headerFunc() {
 	let header = document.getElementById('header');

@@ -17,6 +17,7 @@
 					<button (click)="toCard(currentItem)" class="add__button">Add</button>
 				</div>
 				<p class="text__alert-message" *ngIf="alertMessage">Out of Stock</p>
+				<p class="text__alert-message" *ngIf="notSign">Sign In</p>
 			</div>
 			<div class="content-block__image">
 				<img src="./../../../assets/beer-image.png" class="image__detail-image">
