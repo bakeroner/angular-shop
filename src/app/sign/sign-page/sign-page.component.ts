@@ -39,7 +39,11 @@ export class SignPageComponent implements OnInit {
 				});
 		}
 	}
-  constructor(private checkmeth: SharedValuesService, private router: Router, private http: Http, private loginService: LoginService) { }
+  constructor(
+  	private checkmeth: SharedValuesService, 
+  	private router: Router, 
+  	private http: Http, 
+  	private loginService: LoginService) { }
 
   ngOnInit() {
   	this.loginForm = new FormGroup({

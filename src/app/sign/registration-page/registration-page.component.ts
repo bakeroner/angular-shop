@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { LoginService } from './../../shared/login.service';
+import { SharedValuesService } from './../../shared/shared-values.service';
 
 @Component({
   selector: 'app-registration-page',
@@ -12,6 +13,9 @@ import { LoginService } from './../../shared/login.service';
 export class RegistrationPageComponent implements OnInit {
 	regForm: FormGroup;
 	alert: boolean = false;
+	emitUsername(value) {
+		this.shared.emitUsername(value);
+	}
 	onRegistration(form: FormGroup) {
 		if (form.valid) {
 			this.loginService.checkUser(form.value.login).toPromise()
@@ -19,7 +23,11 @@ export class RegistrationPageComponent implements OnInit {
 					if (item) {
 						this.loginService.addUser(form.value.login, form.value.pass).toPromise()
 							.then((item) => {
+								console.log(item);
+								let userId = item.json().id;
 								sessionStorage.setItem('user', `${form.value.login}`);
+								sessionStorage.setItem('id', `${userId}`);
+								this.emitUsername(`${form.value.login}`);
 								this.router.navigate(["/home"]);
 							});
 					}
@@ -29,7 +37,10 @@ export class RegistrationPageComponent implements OnInit {
 				});
 		}
   	}
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor(
+  	private router: Router, 
+  	private loginService: LoginService,
+  	private shared: SharedValuesService) { }
   ngOnInit() {
   	this.regForm = new FormGroup({
   		login: new FormControl('', [Validators.required/*, Validators.minLength(8)*/]),
